@@ -1,0 +1,23 @@
+{
+  "name": "wallpaper-adhesive",
+  "version": "0.0.1",
+  "description": "Sticks images together to create wallpapers with different images on each display.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "rollup": "rollup -c",
+    "rollup-watch": "rollup -c -w",
+    "rollup-main": "rollup -f cjs -o ./main.js ./src/main.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jacob Mischka <jacob@mischka.me>",
+  "license": "MIT",
+  "dependencies": {
+    "electron": "^1.3.4",
+    "gm": "^1.23.0"
+  },
+  "devDependencies": {
+    "rollup": "^0.34.10",
+    "rollup-watch": "^2.5.0"
+  }
+}
