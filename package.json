@@ -5,9 +5,12 @@
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "rollup": "rollup -c",
-    "rollup-watch": "rollup -c -w",
-    "rollup-main": "rollup -f cjs -o ./main.js ./src/main.js",
+	"package": "electron-packager . wallpaper-adhesive --out bin",
+    "build": "yarn build:renderer && yarn build:main",
+    "build:renderer": "rollup -c",
+    "build:main": "rollup -f cjs -o ./main.js ./src/main.js",
+    "watch:renderer": "rollup -c -w",
+    "watch:main": "rollup -w -f cjs -o ./main.js ./src/main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Jacob Mischka <jacob@mischka.me>",
@@ -17,6 +20,8 @@
     "gm": "^1.23.0"
   },
   "devDependencies": {
+    "electron-packager": "^8.4.0",
+    "eslint": "^3.12.0",
     "rollup": "^0.34.10",
     "rollup-watch": "^2.5.0"
   }

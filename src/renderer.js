@@ -1,4 +1,5 @@
 import electron from 'electron';
+import path from 'path';
 import gm from 'gm';
 
 const imageMagick = gm.subClass({ imageMagick: true });
@@ -19,7 +20,6 @@ function drawScreens(){
 	screens = electron.screen.getAllDisplays().sort(sortScreens);
 
 	const screensContainer = document.querySelector('#screens-container');
-	let screensContainerRect = screensContainer.getBoundingClientRect();
 	for(let screen of screens){
 		let i = screens.indexOf(screen);
 
@@ -77,24 +77,26 @@ function getBoundingScreenRect(){
 }
 
 function createWallpaper(){
-	let OUT_PATH = '/home/mischka/Downloads/wallpaper.png';
-
 	let extent = getBoundingScreenRect();
-	let i = 0;
 	let screen = screens[0];
+	console.log(screens);
 	let imCommand = imageMagick(screen.image)
-		.geometry(`${screen.bounds.width}x${screen.bounds.height}^+${screen.bounds.x}+${screen.bounds.y}`)
+		.geometry(screen.bounds.width, screen.bounds.height, '^')
 		.extent(extent.width, extent.height);
 
 	for(let i = 1; i < screens.length; i++){
 		screen = screens[i];
 		imCommand
-			.out(screen.image, '-geometry', 
+			.out(screen.image, '-geometry',
 				`${screen.bounds.width}x${screen.bounds.height}^+${screen.bounds.x}+${screen.bounds.y}`,
 				'-composite');
 	}
 
-	imCommand.write(OUT_PATH, err => {
+	const outPath = electron.remote.dialog.showSaveDialog({
+		defaultPath: path.join(electron.remote.app.getPath('downloads'), 'wallpaper.png')
+	});
+
+	imCommand.write(outPath, err => {
 		if(!err)
 			console.log('Wallpaper made successfully');
 		else
