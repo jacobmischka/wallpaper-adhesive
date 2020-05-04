@@ -21,7 +21,7 @@
   },
   "devDependencies": {
     "electron-packager": "^14.2.1",
-    "eslint": "^3.12.0",
+    "eslint": "^4.18.2",
     "rollup": "^0.34.10",
     "rollup-watch": "^2.5.0"
   }
