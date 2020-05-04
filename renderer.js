@@ -96,7 +96,9 @@ function createWallpaper(){
 				'-composite');
 	}
 
-	const outPath = electron.remote.dialog.showSaveDialog({defaultPath: path.join(electron.remote.app.getPath('downloads'), 'wallpaper.png')});
+	const outPath = electron.remote.dialog.showSaveDialog({
+		defaultPath: path.join(electron.remote.app.getPath('downloads'), 'wallpaper.png')
+	});
 
 	imCommand.write(outPath, err => {
 		if(!err)
