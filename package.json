@@ -16,7 +16,7 @@
   "author": "Jacob Mischka <jacob@mischka.me>",
   "license": "MIT",
   "dependencies": {
-    "electron": "^1.3.4",
+    "electron": "^11.5.0",
     "gm": "^1.23.0"
   },
   "devDependencies": {
